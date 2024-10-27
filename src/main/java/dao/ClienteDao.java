@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author EMMANUEL
  */
-public class Cliente implements ICliente {
+public class ClienteDao implements ICliente {
 
     @Override
     public boolean add(Object obj) {
@@ -18,7 +18,7 @@ public class Cliente implements ICliente {
     }
 
     @Override
-    public boolean update(Cliente obj) {
+    public boolean update(ClienteDao obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -28,12 +28,12 @@ public class Cliente implements ICliente {
     }
 
     @Override
-    public Cliente getCliente(String login) {
+    public ClienteDao getCliente(String login) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Cliente> getClientes() {
+    public List<ClienteDao> getClientes() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

@@ -12,8 +12,8 @@ import java.util.List;
  */
 public interface ICliente {
     public boolean add(Object obj);
-    public boolean update(Cliente obj);
+    public boolean update(ClienteDao obj);
     public boolean delete(String login);
-    public List<Cliente> getClientes();
-    public Cliente getCliente(String login);
+    public List<ClienteDao> getClientes();
+    public ClienteDao getCliente(String login);
 }

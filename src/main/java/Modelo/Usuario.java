@@ -32,6 +32,7 @@ public class Usuario {
         this.cliente = cliente;
     }
 
+
     public String getLogin() {
         return login;
     }
@@ -70,7 +71,5 @@ public class Usuario {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
-    }
-    
-    
+    }   
 }
