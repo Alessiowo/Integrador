@@ -12,17 +12,29 @@ public class Reporte {
     private int idReporte;
     private String fechaCreacion;
     private String tipo;// por ejemplo, (reporte de reservas, reporte de pedidos)
+    private String contenido;
     private Empleado Empleado;
 
     public Reporte() {
     }
 
-    public Reporte(int idReporte, String fechaCreacion, String tipo, Empleado Empleado) {
+    public Reporte(int idReporte, String fechaCreacion, String tipo, String contenido, Empleado Empleado) {
         this.idReporte = idReporte;
         this.fechaCreacion = fechaCreacion;
         this.tipo = tipo;
+        this.contenido = contenido;
         this.Empleado = Empleado;
     }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+    
+    
 
     public int getIdReporte() {
         return idReporte;
