@@ -20,20 +20,17 @@ import java.util.List;
 public class EmpleadoDao implements IEmpleado {
 
     @Override
-    public boolean add(Object obj) {
-      if (!(obj instanceof Empleado)) return false;
-        Empleado empleado = (Empleado) obj;
-
+    public boolean add(Empleado obj) {
         String sql = "INSERT INTO empleado (nombreEmpleado, cargo, turno) VALUES (?, ?, ?)";
         try (Connection connection = DataSource.obtenerConexion();
              PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, empleado.getNombreEmp());
-            stmt.setString(2, empleado.getCargo());
-            stmt.setString(3, empleado.getTurno());
+            stmt.setString(1, obj.getNombreEmp());
+            stmt.setString(2, obj.getCargo());
+            stmt.setString(3, obj.getTurno());
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            System.err.println("Error al agregar Empleado capa dao: " + e.getMessage());
+            return false; // Devuelve falso en caso de error
         }
     }
 
@@ -54,8 +51,16 @@ public class EmpleadoDao implements IEmpleado {
     }
 
     @Override
-    public boolean delete(String login) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean delete(int idEmpleado) {
+        String sql = "DELETE empleado where idEmpleado=?";
+        try (Connection connection = DataSource.obtenerConexion();
+             PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, idEmpleado);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override

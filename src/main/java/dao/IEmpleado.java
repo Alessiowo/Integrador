@@ -12,9 +12,9 @@ import java.util.List;
  * @author EMMANUEL
  */
 public interface IEmpleado {
-    public boolean add(Object obj);
+    public boolean add(Empleado obj);
     public boolean update(Empleado obj);
-    public boolean delete(String login);
+    public boolean delete(int idEmpleado);
     public List<Empleado> getEmpleados();
     public Empleado getEmpleado(String login);
 }
