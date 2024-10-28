@@ -8,10 +8,7 @@ import Controlador.cUsuario;
 import Modelo.Usuario;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author C24461
- */
+
 public class FrmLogin extends javax.swing.JFrame {
     
     /**

@@ -37,7 +37,19 @@ public class ClienteDao implements ICliente {
 
     @Override
     public boolean update(Cliente obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "UPDATE cliente SET nombre = ?, apellido = ?, email = ?, telefono = ? WHERE idCliente = ?";
+        try (Connection conn = DataSource.obtenerConexion();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, obj.getNombre());
+            stmt.setString(2, obj.getApellido());
+            stmt.setString(3, obj.getEmail());
+            stmt.setString(4, obj.getTelefono());
+            stmt.setInt(5, obj.getIdCliente());
+            return stmt.executeUpdate() > 0; // Devuelve verdadero si se actualiza correctamente
+        } catch (SQLException e) {
+            System.err.println("Error al actualizar cliente: " + e.getMessage());
+            return false; // Devuelve falso en caso de error
+        }
     }
 
     @Override
