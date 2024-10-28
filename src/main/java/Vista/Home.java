@@ -7,7 +7,9 @@ package Vista;
 import Controlador.cCliente;
 import Modelo.Cliente;
 import Modelo.Usuario;
+import dao.ClienteDao;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -192,15 +194,20 @@ public class Home extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nombre", "Apellido", "Telefono", "Email"
+                "ID", "Nombre", "Apellido", "Telefono", "Email"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -417,6 +424,7 @@ public class Home extends javax.swing.JFrame {
         while(dtm.getRowCount()>0)dtm.removeRow(0);
         for(Cliente aux : obj.getCliente()){
             Vector fila = new Vector();
+            fila.add(aux.getIdCliente());
             fila.add(aux.getNombre());
             fila.add(aux.getApellido());
             fila.add(aux.getTelefono());
@@ -445,6 +453,31 @@ public class Home extends javax.swing.JFrame {
             }
         });
     }//GEN-LAST:event_btnNuevoEmpleadoActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int seleccion = jTable1.getSelectedRow();
+        if(seleccion != -1){
+            int idCliente = Integer.parseInt(jTable1.getValueAt(seleccion, 0).toString());
+            String nombre = jTable1.getValueAt(seleccion, 1).toString();
+            String apellido = jTable1.getValueAt(seleccion, 2).toString();
+            String telefono = jTable1.getValueAt(seleccion, 3).toString();
+            String email = jTable1.getValueAt(seleccion, 4).toString();
+            
+            ClienteDao clienteDao = new ClienteDao();
+            Cliente cliente = clienteDao.getCliente(idCliente);
+            
+            if (cliente != null){
+                FrmRegClientes ventana = new FrmRegClientes();
+                ventana.setDatosCliente( idCliente,cliente.getNombre(), cliente.getApellido(), cliente.getTelefono(), cliente.getEmail());
+                ventana.setVisible(true);
+                
+                
+            }else {
+                JOptionPane.showMessageDialog(null, "Cliente no encontrado.");
+            }
+            
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -22,4 +22,9 @@ public class cCliente {
         ClienteDao objCD = new ClienteDao();
         return objCD.add(obj);
     }
+    
+    public boolean update(Cliente obj) {
+        ClienteDao objCD = new ClienteDao();
+        return objCD.update(obj);
+    }
 }
